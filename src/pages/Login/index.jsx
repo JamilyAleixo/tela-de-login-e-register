@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import * as S from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import ButtonCM from "../../components/ButtonCM/ButtonCM";
 import axios from "axios";
-import InputCM from "../../components/InputCM/InputCm";
-import ContainerCM from "../../components/ContainerCM/ContainerCM";
+import ButtonCM from '../components/ButtonCM';
+import InputCM from '../components/InputCM';
+import ContainerCM from '../components/ContainerCM';
 
 
 function Login() {

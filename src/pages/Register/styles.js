@@ -45,3 +45,8 @@ export const Return = styled.p`
   display: flex;
   gap: 0.3rem;
 `;
+
+export const labelError = styled.label`
+  color: #ff6100;
+  font-size: 0.7rem;
+`;

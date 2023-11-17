@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
 import useAuth from "../../hooks/useAuth";
 
+
 const Home = () => {
   const { signout } = useAuth();
   const navigate = useNavigate();
