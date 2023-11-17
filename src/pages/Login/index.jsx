@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import * as S from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+import ButtonCM from "../../components/ButtonCM/ButtonCM";
+import axios from "axios";
+import InputCM from "../../components/InputCM/InputCm";
+import ContainerCM from "../../components/ContainerCM/ContainerCM";
+
 
 function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [emailValue, setEmailValue] = useState("");
   const [senhaValue, setSenhaValue] = useState("");
+  const [error, setError] = useState("");
 
   const handleEmailChange = (event) => {
     setEmailValue(event.target.value);
@@ -14,48 +24,66 @@ function Login() {
     setSenhaValue(event.target.value);
   };
 
-  const ButtonCM = ({ children, onClick, ...rest }) => {
-    return (
-      <S.ButtonCM button="true" onClick={onClick} {...rest}>
-        {children}
-      </S.ButtonCM>
-    );
+  const handleLogin = async () => {
+    try {
+      if (!emailValue || !senhaValue) {
+        setError("Preencha todos os campos");
+        return;
+      }
+
+      const response = await axios.post("http://localhost:3000/login", {
+        email: emailValue,
+        senha: senhaValue,
+      });
+
+      
+      login(emailValue, senhaValue);
+      navigate("/home");
+
+      return response.data;
+
+    } catch (error) {
+      setError("Erro no login. Verifique suas credenciais.");
+      console.error("Erro no login:", error);
+    }
   };
 
+
   return (
-    <S.ContainerCM>
+    <ContainerCM>
       <S.LogoCM img="true" src="./logo.jpeg" alt="Logo da empresa" />
       <S.h1CM spam="true">Seja bem Vindo(a)!</S.h1CM>
       <S.h2CM spam="true">Faça o login para acessar</S.h2CM>
       <S.h2CM spam="true">o seu cardápio digital</S.h2CM>
 
-      <S.EmailCM
+      <InputCM
         input="true"
         type="text"
         placeholder="E-mail"
         value={emailValue}
-        onChange={handleEmailChange}
-      />
+        onChange= {(e) => {handleEmailChange(e);
+          setError("")}}/>
 
-      <S.SenhaCM
+      <InputCM
         input="true"
         type="password"
         placeholder="Senha"
         value={senhaValue}
-        onChange={handleSenhaChange}
-      />
-
+        onChange= {(e) => {handleSenhaChange(e);
+          setError("")}}/>
+          
+      <S.labelError>{error}</S.labelError>
       <S.ESenhaCM href="https://www.colaboraread.com.br/login/auth">
         Esqueci minha senha
       </S.ESenhaCM>
 
-      <ButtonCM>{"Entrar"}</ButtonCM>
+      <ButtonCM onClick={handleLogin}>{"Entrar"}</ButtonCM>
 
       <S.CadastroCM p="true">
         Não tem uma conta?
         <Link to="/registro">Criar conta</Link>
       </S.CadastroCM>
-    </S.ContainerCM>
+    </ContainerCM>
   );
 }
 export default Login;
