@@ -1,7 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "./styles";
+import * as S from "./styled.js";
 import useAuth from "../../hooks/useAuth";
+import ButtonCM from '../../components/ButtonCM/ButtonCM.jsx';
+import ContainerCM from '../../components/ContainerCM/ContainerCM.jsx';
 
 
 const Home = () => {
@@ -9,12 +11,12 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <S.Container>
+    <ContainerCM>
       <S.Title>Home</S.Title>
-      <S.ButtonCM Text="Sair" onClick={() => [signout(), navigate("/")]}>
+      <ButtonCM Text="Sair" onClick={() => [signout(), navigate("/")]}>
         Sair
-      </S.ButtonCM>
-    </S.Container>
+      </ButtonCM>
+    </ContainerCM>
   );
 };
 

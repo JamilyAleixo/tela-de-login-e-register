@@ -1,9 +1,8 @@
 import { Fragment } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import Register from "../pages/Login";
-import Login from "../pages/PagPrincipal"; 
- import Home from "../pages/Register"; 
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 
 const Private = ({ Item }) => {
@@ -17,11 +16,11 @@ function RoutesApp() {
     <BrowserRouter>
       <Fragment>
         <Routes>
-          <Route exact path="/pagPrincipal" element={<Private Item={Home} />} />
-          <Route path="/login" element={<Login />} />
-          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/Login" element={<Private Item={Login} />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
           <Route path="/" element={<Login />} />
-        </Routes>
+          </Routes>
       </Fragment>
     </BrowserRouter>
   );

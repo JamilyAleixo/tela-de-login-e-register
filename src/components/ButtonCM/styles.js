@@ -7,8 +7,8 @@ export const Button = styled.button`
   margin-top: 1rem;
   background: linear-gradient(
     to bottom,
-    rgba(340, 70, 0, 0.6),
-    rgba(340, 70, 0, 1)
+    rgba(70,130,140),
+    rgba(70,130,180)
   );
   color: #fff;
   border: none;

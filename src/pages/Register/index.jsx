@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import * as S from "./styles";
+import * as S from "./styles.js";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
-import ButtonCM from '../components/ButtonCM';
-import InputCM from '../components/InputCM';
-import ContainerCM from '../components/ContainerCM';
+import ButtonCM from '../../components/ButtonCM/ButtonCM.jsx';
+import InputCM from '../../components/InputCM/InputCM.jsx';
+import ContainerCM from '../../components/ContainerCM/ContainerCM.jsx';
 
 const Register = () => {
   const [nome, setNome] = useState("");
@@ -38,7 +38,7 @@ const Register = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("/Register", {
       nome,
       email,
       senha,
@@ -68,17 +68,17 @@ const Register = () => {
 
     return (
     <ContainerCM>
-      <S.LogoCM img="true" src="/logo.jpeg" alt="Logo da empresa" />
+      <S.LogoCM img="true" src="/logo.png" alt="Logo da empresa" />
       <S.h1CM className="true">Seja bem Vindo(a)!</S.h1CM>
-      <S.h2CM className="true">Crie sua conta para poder</S.h2CM>
-      <S.h2CM className="true">aproveitar todas as experiências</S.h2CM>
+      <S.h2CM className="true">Registre-se para que todos</S.h2CM>
+      <S.h2CM className="true">possam desfrutar das experiências juntos!</S.h2CM>
 
       <form onSubmit={handleSignup}>
         <label>
           <InputCM
             type="text"
             name="nome"
-            placeholder="Nome da Empresa"
+            placeholder="Nome Social"
             value={nome}
             onChange={(e) => setNome(e.target.value)}
           />
@@ -119,7 +119,7 @@ const Register = () => {
           <S.DescricaoCM
             type="text"
             name="descricao"
-            placeholder="Descrição do Estabelecimento"
+            placeholder="Características Pessoais ( liste aqui o que você quer que as pessoas saibam de você)"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
           />
@@ -132,7 +132,7 @@ const Register = () => {
 
       <S.Return p="true">
         Já tem uma conta?
-        <Link to="/login">Criar conta</Link>
+        <Link to="/login">Fazer Login</Link>
       </S.Return>
     </ContainerCM>
   );

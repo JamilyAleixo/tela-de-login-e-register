@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import * as S from "./styles";
+import * as S from "./styles.js";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
-import ButtonCM from '../components/ButtonCM';
-import InputCM from '../components/InputCM';
-import ContainerCM from '../components/ContainerCM';
+import ButtonCM from '../../components/ButtonCM/ButtonCM.jsx';
+import InputCM from '../../components/InputCM/InputCM.jsx';
+import ContainerCM from '../../components/ContainerCM/ContainerCM.jsx';
 
 
 function Login() {
@@ -31,7 +31,7 @@ function Login() {
         return;
       }
 
-      const response = await axios.post("http://localhost:3000/login", {
+      const response = await axios.post("/login", {
         email: emailValue,
         senha: senhaValue,
       });
@@ -51,10 +51,10 @@ function Login() {
 
   return (
     <ContainerCM>
-      <S.LogoCM img="true" src="./logo.jpeg" alt="Logo da empresa" />
+      <S.LogoCM img="true" src="./logo.png" alt="Logo da empresa" />
       <S.h1CM spam="true">Seja bem Vindo(a)!</S.h1CM>
-      <S.h2CM spam="true">Faça o login para acessar</S.h2CM>
-      <S.h2CM spam="true">o seu cardápio digital</S.h2CM>
+      <S.h2CM spam="true">Entre para dar uma espiadinha nos perfis</S.h2CM>
+      <S.h2CM spam="true">no nosso app de paquera</S.h2CM>
 
       <InputCM
         input="true"
@@ -73,7 +73,7 @@ function Login() {
           setError("")}}/>
           
       <S.labelError>{error}</S.labelError>
-      <S.ESenhaCM href="https://www.colaboraread.com.br/login/auth">
+      <S.ESenhaCM href="https://www.google.com/">
         Esqueci minha senha
       </S.ESenhaCM>
 
@@ -81,7 +81,7 @@ function Login() {
 
       <S.CadastroCM p="true">
         Não tem uma conta?
-        <Link to="/registro">Criar conta</Link>
+        <Link to="/register">Criar conta</Link>
       </S.CadastroCM>
     </ContainerCM>
   );
